@@ -54,11 +54,11 @@
 
     @font-face {
       font-family: elevator;
-      src: url("font/Elevator.eot") format("embedded-opentype"),
+      src: url("font/elevador/Elevator.eot") format("embedded-opentype"),
         /* IE6-IE8 */ url("font/Elevator.woff2") format("woff2"),
-        /* Super Modern Browsers */ url("font/Elevator.woff") format("woff"),
-        /* Pretty Modern Browsers */ url("font/Elevator.ttf") format("truetype"),
-        /* Safari, Android, iOS */ url("font/Elevator.svg") format("svg"); /* Legacy iOS */
+        /* Super Modern Browsers */ url("font/elevador/Elevator.woff") format("woff"),
+        /* Pretty Modern Browsers */ url("font/elevador/Elevator.ttf") format("truetype"),
+        /* Safari, Android, iOS */ url("font/elevador/Elevator.svg") format("svg"); /* Legacy iOS */
     }
   </style>
   <head>
@@ -79,7 +79,7 @@
   </head>
   <!-- navbar -->
   <body id="fundo">
-    <audio src="audio/elevator_music.wav" autoplay loop id="musica"></audio>
+    <audio src="audio/elevador/elevator_music.wav" autoplay loop id="musica"></audio>
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Autômatos:</a>
@@ -130,17 +130,17 @@
     var musica = document.getElementById("musica");
 
     //imagens
-    var imagemFechada = "animation/elevador_fechado.jpg";
-    var imagemAberta = "animation/elevador_aberto.jpg";
-    var imagemFechando = "animation/elevador_fechando.jpg";
-    var imagemSubindo = "animation/elevador_subindo.jpg";
-    var imagemDescendo = "animation/elevador_descendo.jpg";
+    var imagemFechada = "animation/elevador/elevador_fechado.jpg";
+    var imagemAberta = "animation/elevador/elevador_aberto.jpg";
+    var imagemFechando = "animation/elevador/elevador_fechando.jpg";
+    var imagemSubindo = "animation/elevador/elevador_subindo.jpg";
+    var imagemDescendo = "animation/elevador/elevador_descendo.jpg";
 
     localStorage.setItem("andar", "T");
     localStorage.setItem("aberto", "true");
 
     textoAndar.innerText = localStorage.getItem("andar");
-    fundo.background = "animation/elevador_aberto.jpg";
+    fundo.background = "animation/elevador/elevador_aberto.jpg";
     musica.volume = 0.3;
 
     // Fecha ou abre a porta
@@ -152,7 +152,7 @@
         await new Promise((r) => setTimeout(r, 500));
         fundo.background = imagemFechada;
       } else {
-        var audio = new Audio("audio/ding.wav");
+        var audio = new Audio("audio/elevador/ding.wav");
         audio.play();
         fundo.background = imagemFechando;
         localStorage.setItem("aberto", "true");
