@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+  <style>
+    body,
+    html {
+      height: 100%;
+    }
+    body {
+      /* Full height */
+      height: 100%;
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-size: 50% 100vh;
+      background-color: rgb(153, 154, 158);
+    }
+  </style>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Case 1 - Máquina de Doce</title>
+    <link 
+      href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+      />
+    <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"
+    />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
@@ -31,5 +52,81 @@
           </div>
         </div>
       </nav>
-</body>
+
+      <!--botoes-->
+      <p id="andar"></p>
+    <button type="button" id="colocar1Real" class="medium material-icons">
+      arrow_upward
+    </button>
+    <button type="button" id="colocar2Reais" class="medium material-icons">
+      arrow_upward
+    </button>
+    <button type="button" id="colocar5Reais" class="medium material-icons">
+      arrow_upward
+    </button>
+    <button type="button" id="escolherDoceA" class="medium material-icons">
+      arrow_downward
+    </button>
+    <button type="button" id="escolherDoceB" class="medium material-icons">
+      arrow_downward
+    </button>
+    <button type="button" id="escolherDoceC" class="medium material-icons">
+      arrow_downward
+    </button>
+    
+  </body>
+
+  <script>
+    //elementos
+    var fundo = document.getElementById("fundo");
+    var botao1Real = document.getElementById("colocar1Real");
+    var botao2Reais = document.getElementById("colocar2Reais");
+    var botao5Reais = document.getElementById("colocar5Reais");
+    var botaoDoceA = document.getElementById("escolherDoceA");
+    var botaoDoceB = document.getElementById("escolherDoceB");
+    var botaoDoceC = document.getElementById("escolherDoceC");
+
+    //imagens
+    var maquinaCheia = "animation/maquina_de_doce/maquina_cheia_inicio.png"
+    var maquinaAposDinheiro
+    var maquinaAposDoceA
+    var maquinaAposDoceB
+    var maquinaAposDoceC
+
+    localStorage.setItem("dinheiroTotal", 0);
+    localStorage.setItem("troco", 0);
+
+    textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
+
+    //Colocar 1 real
+    botao2Reais.onclick = async function () {
+      localStorage.setItem("dinheiroTotal", "dinheiroTotal" + 1);
+    };
+
+    //Colocar 2 reais
+    botao2Reais.onclick = async function () {
+      localStorage.setItem("dinheiroTotal", "dinheiroTotal" + 2);
+    };
+
+    //Colocar 5 reais
+    botao5Reais.onclick = async function () {
+      localStorage.setItem("dinheiroTotal", "dinheiroTotal" + 5);
+    };
+
+    //Doce A sem troco
+    if(localStorage.getItem("dinheiroTotal") == 6){
+      
+    }
+
+    //Doce A com troco
+
+    //Doce B sem troco
+
+    //Doce B com troco
+
+    //Doce C sem troco
+
+    //Doce C com troco
+
+  </script>
 </html>
