@@ -86,12 +86,14 @@
     var botaoDoceB = document.getElementById("escolherDoceB");
     var botaoDoceC = document.getElementById("escolherDoceC");
 
+    var saldoMaquina = document.getElementById("saldoMaquina");
+
     //imagens
     var maquinaCheia = "animation/maquina_de_doce/maquina_cheia_inicio.png"
-    var maquinaAposDinheiro
-    var maquinaAposDoceA
-    var maquinaAposDoceB
-    var maquinaAposDoceC
+    var maquinaAposDinheiro = "animation/maquina_de_doce/maquinaAposDinheiro.png"
+    var maquinaAposDoceA = "animation/maquina_de_doce/maquinaAposDoceA.png"
+    var maquinaAposDoceB = "animation/maquina_de_doce/maquinaAposDoceB.png"
+    var maquinaAposDoceC = "animation/maquina_de_doce/maquinaAposDoceC.png"
 
     localStorage.setItem("dinheiroTotal", 0);
     localStorage.setItem("troco", 0);
@@ -100,31 +102,67 @@
 
     //Colocar 1 real
     botao2Reais.onclick = async function () {
+      fundo.background = maquinaAposDinheiro;
       localStorage.setItem("dinheiroTotal", "dinheiroTotal" + 1);
+      saldoMaquina.innerText = localStorage.getItem("dinheiroTotal");
+      await new Promise((r) => setTimeout(r, 500));
+      fundo.background = maquinaCheia;
     };
 
     //Colocar 2 reais
     botao2Reais.onclick = async function () {
+      fundo.background = maquinaAposDinheiro;
       localStorage.setItem("dinheiroTotal", "dinheiroTotal" + 2);
+      saldoMaquina.innerText = localStorage.getItem("dinheiroTotal");
+      await new Promise((r) => setTimeout(r, 500));
+      fundo.background = maquinaCheia;
     };
 
     //Colocar 5 reais
     botao5Reais.onclick = async function () {
+      fundo.background = maquinaAposDinheiro;
       localStorage.setItem("dinheiroTotal", "dinheiroTotal" + 5);
+      saldoMaquina.innerText = localStorage.getItem("dinheiroTotal");
+      await new Promise((r) => setTimeout(r, 500));
+      fundo.background = maquinaCheia;
     };
 
     //Doce A sem troco
+    botaoDoceA.onclick = async function () {
     if(localStorage.getItem("dinheiroTotal") == 6){
-      
+      fundo.background = maquinaAposDoceA
+      localStorage.setItem("dinheiroTotal", 0);
+      saldoMaquina.innerText = localStorage.getItem("dinheiroTotal");
+      await new Promise((r) => setTimeout(r, 500));
+      fundo.background = maquinaCheia;
     }
+  }
 
     //Doce A com troco
 
     //Doce B sem troco
+    botaoDoceB.onclick = async function () {
+    if(localStorage.getItem("dinheiroTotal") == 7){
+      fundo.background = maquinaAposDoceB
+      localStorage.setItem("dinheiroTotal", 0);
+      saldoMaquina.innerText = localStorage.getItem("dinheiroTotal");
+      await new Promise((r) => setTimeout(r, 500));
+      fundo.background = maquinaCheia;
+    }
+  }
 
     //Doce B com troco
 
     //Doce C sem troco
+    botaoDoceC.onclick = async function () {
+    if(localStorage.getItem("dinheiroTotal") == 8){
+      fundo.background = maquinaAposDoceC
+      localStorage.setItem("dinheiroTotal", 0);
+      saldoMaquina.innerText = localStorage.getItem("dinheiroTotal");
+      await new Promise((r) => setTimeout(r, 500));
+      fundo.background = maquinaCheia;
+    }
+  }
 
     //Doce C com troco
 
