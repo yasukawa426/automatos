@@ -129,7 +129,7 @@
 
     //Doce A sem troco
     botaoDoceA.onclick = async function () {
-    if(localStorage.getItem("dinheiroTotal") == 6){
+    if(localStorage.getItem("dinheiroTotal") >= 6){
       fundo.background = maquinaAposDoceA
       localStorage.setItem("dinheiroTotal", 0);
       saldoMaquina.innerText = localStorage.getItem("dinheiroTotal");
@@ -139,6 +139,15 @@
   }
 
     //Doce A com troco
+    botaoDoceA.onclick = async function () {
+    if(localStorage.getItem("dinheiroTotal") > 6){
+      fundo.background = maquinaAposDoceA
+      localStorage.setItem("dinheiroTotal", "dinheiroTotal" - 6);
+      saldoMaquina.innerText = localStorage.getItem("dinheiroTotal");
+      await new Promise((r) => setTimeout(r, 500));
+      fundo.background = maquinaCheia;
+    }
+  }
 
     //Doce B sem troco
     botaoDoceB.onclick = async function () {
@@ -152,6 +161,15 @@
   }
 
     //Doce B com troco
+    botaoDoceB.onclick = async function () {
+    if(localStorage.getItem("dinheiroTotal") > 7){
+      fundo.background = maquinaAposDoceB
+      localStorage.setItem("dinheiroTotal", "dinheiroTotal" - 7);
+      saldoMaquina.innerText = localStorage.getItem("dinheiroTotal");
+      await new Promise((r) => setTimeout(r, 500));
+      fundo.background = maquinaCheia;
+    }
+  }
 
     //Doce C sem troco
     botaoDoceC.onclick = async function () {
@@ -165,6 +183,15 @@
   }
 
     //Doce C com troco
+    botaoDoceC.onclick = async function () {
+    if(localStorage.getItem("dinheiroTotal") > 8){
+      fundo.background = maquinaAposDoceC
+      localStorage.setItem("dinheiroTotal", "dinheiroTotal" - 8);
+      saldoMaquina.innerText = localStorage.getItem("dinheiroTotal");
+      await new Promise((r) => setTimeout(r, 500));
+      fundo.background = maquinaCheia;
+    }
+  }
 
   </script>
 </html>
