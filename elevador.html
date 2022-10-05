@@ -113,7 +113,13 @@
       position: absolute;
       left: 11%;
       border-left: 2px solid black;
-      height: 10%;
+      height: 19%;
+    }
+
+    .simbolo {
+      position: absolute;
+      top: 40%;
+      left: 13%;
     }
   </style>
   <head>
@@ -193,16 +199,16 @@
 
     <p>Representação dos movimento:</p>
     <!-- desenho do automato -->
-    <div class="circulo">
+    <div class="circulo" id="circulo">
       <div class="circulo-txt" id="primeiroTexto"></div>
     </div>
     <!-- linha -->
-    <div class="linha"></div>
+    <div class="linha" id="linha"></div>
+    <span class="simbolo" id="simbolo"></span>
 
-    <div class="circulo2">
-      <div class="circulo-txt" id="primeiroTexto">aaa</div>
+    <div class="circulo2" id="circulo2">
+      <div class="circulo-txt" id="segundoTexto"></div>
     </div>
-    <div class="linha"></div>
 
     <!-- Modal -->
     <div
@@ -269,7 +275,13 @@
     var botaoFechar = document.getElementById("fechar");
     var textoAndar = document.getElementById("andar");
     var musica = document.getElementById("musica");
-    var primeiraBola = document.getElementById("primeiroTexto");
+
+    var primeiroTexto = document.getElementById("primeiroTexto");
+    var segundoTexto = document.getElementById("segundoTexto");
+    var circulo = document.getElementById("circulo");
+    var circuloDois = document.getElementById("circulo2");
+    var simbolo = document.getElementById("simbolo");
+    var linha = document.getElementById("linha");
 
     //imagens
     var imagemFechada = "animation/elevador/elevador_fechado.jpg";
@@ -281,7 +293,8 @@
     localStorage.setItem("andar", "T");
     localStorage.setItem("aberto", "true");
 
-    primeiraBola.innerText = "T";
+    primeiroTexto.innerText = "T";
+ 
     textoAndar.innerText = localStorage.getItem("andar");
     fundo.background = "animation/elevador/elevador_aberto.jpg";
     musica.volume = 0.3;
@@ -309,23 +322,34 @@
       if (localStorage.getItem("aberto") == "true") {
         //n faz nada
       } else {
+        circuloDois.style.display = "block";
+        simbolo.style.display = "block";
+        linha.style.display = "block";
         andar = localStorage.getItem("andar");
         fundo.background = imagemSubindo;
         switch (andar) {
           case "T":
             andar = "1";
+            primeiroTexto.innerHTML= "T"
+            segundoTexto.innerHTML = "1"
             break;
 
           case "1":
             andar = "2";
+            primeiroTexto.innerHTML= "1"
+            segundoTexto.innerHTML = "2"
             break;
 
           case "2":
             andar = "3";
+            primeiroTexto.innerHTML= "2"
+            segundoTexto.innerHTML = "3"
             break;
 
           case "3":
             andar = "3";
+            primeiroTexto.innerHTML= "3"
+            segundoTexto.innerHTML = "3"
             break;
 
           default:
