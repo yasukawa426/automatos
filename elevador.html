@@ -299,7 +299,7 @@
     fundo.background = "animation/elevador/elevador_aberto.jpg";
     musica.volume = 0.3;
 
-    // Fecha ou abre a porta
+    // Fecha ou abre a porta. Troca a imagem de fundo, espera 500ms e troca novamente. atualiza os textos das bolinha com "Andar" e "Andar + A" e vice e versa. Toca um som ao abrir.
     botaoFechar.onclick = async function () {
       console.log(localStorage.getItem("aberto"));
       if (localStorage.getItem("aberto") == "true") {
@@ -324,14 +324,11 @@
       }
     };
 
-    //Sobe o elevador
+    //Sobe o elevador. Altera a imagem. Salva o andar atual. E preenche as bolinhas com o andar anterior e o atual.
     botaoSubir.onclick = async function () {
       if (localStorage.getItem("aberto") == "true") {
         //n faz nada
       } else {
-        circuloDois.style.display = "block";
-        simbolo.style.display = "block";
-        linha.style.display = "block";
         andar = localStorage.getItem("andar");
         fundo.background = imagemSubindo;
         switch (andar) {
@@ -367,7 +364,7 @@
       }
     };
 
-    //Fecha o elevador
+    //Fecha o elevador. Altera a imagem. Salva o andar atual. E preenche as bolinhas com o andar anterior e o atual.
     botaoDescer.onclick = async function () {
       console.log("estou na funcao");
       if (localStorage.getItem("aberto") == "true") {
