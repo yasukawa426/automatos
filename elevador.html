@@ -63,6 +63,58 @@
         /* Safari, Android, iOS */ url("font/elevador/Elevator.svg")
           format("svg"); /* Legacy iOS */
     }
+
+    .circulo {
+      width: 6%;
+      border-radius: 50%;
+      background: yellow;
+      left: 8%;
+      line-height: 0;
+      position: relative;
+    }
+
+    .circulo2 {
+      position: absolute;
+      top: 18.5%;
+      width: 6%;
+      border-radius: 50%;
+      background: yellow;
+      left: 8%;
+      line-height: 0;
+      position: relative;
+    }
+
+    .circulo2::after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    /* (B) USE ::AFTER TO CREATE MATCHING HEIGHT */
+    /* Credits - https://spin.atomicobject.com/2015/07/14/css-responsive-square/ */
+    .circulo::after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    .circulo-txt {
+      /* (E1) CENTER TEXT IN CIRCLE */
+      position: absolute;
+      bottom: 50%;
+      width: 100%;
+      text-align: center;
+
+      font-family: arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .linha {
+      position: absolute;
+      left: 11%;
+      border-left: 2px solid black;
+      height: 10%;
+    }
   </style>
   <head>
     <meta charset="UTF-8" />
@@ -127,7 +179,7 @@
       compare_arrows
     </button>
 
-    <!-- Button trigger modal -->
+    <!--abrir modal -->
     <button
       type="button"
       class="btn btn-primary"
@@ -136,6 +188,21 @@
     >
       Ver autômato completo
     </button>
+
+    <p></p>
+
+    <p>Representação dos movimento:</p>
+    <!-- desenho do automato -->
+    <div class="circulo">
+      <div class="circulo-txt" id="primeiroTexto"></div>
+    </div>
+    <!-- linha -->
+    <div class="linha"></div>
+
+    <div class="circulo2">
+      <div class="circulo-txt" id="primeiroTexto">aaa</div>
+    </div>
+    <div class="linha"></div>
 
     <!-- Modal -->
     <div
@@ -202,6 +269,7 @@
     var botaoFechar = document.getElementById("fechar");
     var textoAndar = document.getElementById("andar");
     var musica = document.getElementById("musica");
+    var primeiraBola = document.getElementById("primeiroTexto");
 
     //imagens
     var imagemFechada = "animation/elevador/elevador_fechado.jpg";
@@ -213,6 +281,7 @@
     localStorage.setItem("andar", "T");
     localStorage.setItem("aberto", "true");
 
+    primeiraBola.innerText = "T";
     textoAndar.innerText = localStorage.getItem("andar");
     fundo.background = "animation/elevador/elevador_aberto.jpg";
     musica.volume = 0.3;
