@@ -326,10 +326,11 @@
 
     //Sobe o elevador. Altera a imagem. Salva o andar atual. E preenche as bolinhas com o andar anterior e o atual.
     botaoSubir.onclick = async function () {
+      andar = localStorage.getItem("andar");
       if (localStorage.getItem("aberto") == "true") {
-        //n faz nada
+        primeiroTexto.innerHTML = andar;
+        segundoTexto.innerHTML = andar;
       } else {
-        andar = localStorage.getItem("andar");
         fundo.background = imagemSubindo;
         switch (andar) {
           case "T":
@@ -367,10 +368,12 @@
     //Fecha o elevador. Altera a imagem. Salva o andar atual. E preenche as bolinhas com o andar anterior e o atual.
     botaoDescer.onclick = async function () {
       console.log("estou na funcao");
+      andar = localStorage.getItem("andar");
+
       if (localStorage.getItem("aberto") == "true") {
-        //n faz nada
+        primeiroTexto.innerHTML = andar;
+        segundoTexto.innerHTML = andar;
       } else {
-        andar = localStorage.getItem("andar");
         fundo.background = imagemDescendo;
 
         switch (andar) {
