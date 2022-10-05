@@ -304,9 +304,9 @@
       console.log(localStorage.getItem("aberto"));
       if (localStorage.getItem("aberto") == "true") {
         fundo.background = imagemFechando;
-        primeiroTexto.innerHTML = textoAndar.innerText =
-          localStorage.getItem("andar") + "A";
+        primeiroTexto.innerHTML = localStorage.getItem("andar") + "A";
         segundoTexto.innerHTML = localStorage.getItem("andar");
+        textoAndar.innerText = localStorage.getItem("andar");
         localStorage.setItem("aberto", "false");
         await new Promise((r) => setTimeout(r, 500));
         fundo.background = imagemFechada;
@@ -314,10 +314,10 @@
         var audio = new Audio("audio/elevador/ding.wav");
         audio.play();
         fundo.background = imagemFechando;
-        primeiroTexto.innerHTML = textoAndar.innerText =
-          localStorage.getItem("andar");
-        segundoTexto.innerHTML = textoAndar.innerText =
-          localStorage.getItem("andar") + "A";
+        primeiroTexto.innerHTML = localStorage.getItem("andar");
+        segundoTexto.innerHTML = localStorage.getItem("andar") + "A";
+
+        textoAndar.innerText = localStorage.getItem("andar");
         localStorage.setItem("aberto", "true");
         await new Promise((r) => setTimeout(r, 500));
         fundo.background = imagemAberta;
