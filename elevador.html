@@ -44,7 +44,7 @@
 
     #andar {
       position: absolute;
-      left: 52%;
+      left: 50%;
       top: 10.6%;
       font-family: "Elevator";
       color: green;
@@ -55,10 +55,71 @@
     @font-face {
       font-family: elevator;
       src: url("font/elevador/Elevator.eot") format("embedded-opentype"),
-        /* IE6-IE8 */ url("font/Elevator.woff2") format("woff2"),
-        /* Super Modern Browsers */ url("font/elevador/Elevator.woff") format("woff"),
-        /* Pretty Modern Browsers */ url("font/elevador/Elevator.ttf") format("truetype"),
-        /* Safari, Android, iOS */ url("font/elevador/Elevator.svg") format("svg"); /* Legacy iOS */
+        /* IE6-IE8 */ url("font/elevador/Elevator.woff2") format("woff2"),
+        /* Super Modern Browsers */ url("font/elevador/Elevator.woff")
+          format("woff"),
+        /* Pretty Modern Browsers */ url("font/elevador/Elevator.ttf")
+          format("truetype"),
+        /* Safari, Android, iOS */ url("font/elevador/Elevator.svg")
+          format("svg"); /* Legacy iOS */
+    }
+
+    .circulo {
+      width: 6%;
+      border-radius: 50%;
+      background: yellow;
+      left: 8%;
+      line-height: 0;
+      position: relative;
+    }
+
+    .circulo2 {
+      position: absolute;
+      top: 18.5%;
+      width: 6%;
+      border-radius: 50%;
+      background: yellow;
+      left: 8%;
+      line-height: 0;
+      position: relative;
+    }
+
+    .circulo2::after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    /* (B) USE ::AFTER TO CREATE MATCHING HEIGHT */
+    /* Credits - https://spin.atomicobject.com/2015/07/14/css-responsive-square/ */
+    .circulo::after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+
+    .circulo-txt {
+      /* (E1) CENTER TEXT IN CIRCLE */
+      position: absolute;
+      bottom: 50%;
+      width: 100%;
+      text-align: center;
+
+      font-family: arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .linha {
+      position: absolute;
+      left: 11%;
+      border-left: 2px solid black;
+      height: 19%;
+    }
+
+    .simbolo {
+      position: absolute;
+      top: 40%;
+      left: 13%;
     }
   </style>
   <head>
@@ -79,7 +140,12 @@
   </head>
   <!-- navbar -->
   <body id="fundo">
-    <audio src="audio/elevador/elevator_music.wav" autoplay loop id="musica"></audio>
+    <audio
+      src="audio/elevador/elevator_music.wav"
+      autoplay
+      loop
+      id="musica"
+    ></audio>
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Autômatos:</a>
@@ -118,8 +184,89 @@
     <button type="button" id="fechar" class="medium material-icons">
       compare_arrows
     </button>
+
+    <!--abrir modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Ver autômato completo
+    </button>
+
+    <p></p>
+
+    <p>Representação dos movimento:</p>
+    <!-- desenho do automato -->
+    <div class="circulo" id="circulo">
+      <div class="circulo-txt" id="primeiroTexto"></div>
+    </div>
+    <!-- linha -->
+    <div class="linha" id="linha"></div>
+    <span class="simbolo" id="simbolo"></span>
+
+    <div class="circulo2" id="circulo2">
+      <div class="circulo-txt" id="segundoTexto"></div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Case 2 - Elevador
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p><b>Símbolos:</b> "s" (subir), "d" (descer), "f" (fechar)</p>
+            <p>
+              <b>Estados:</b> "T" (térreo), "P1" (piso 1), "P2", "P3", "TA"
+              (térreo aberto), "P1A" (piso 1 aberto), "P2A", "P3A"
+            </p>
+            <img
+              src="animation/elevador/elevador_automato.png"
+              style="
+                height: 80%;
+                width: 80%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+              "
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"
+  ></script>
   <script>
     //elementos
     var fundo = document.getElementById("fundo");
@@ -128,6 +275,13 @@
     var botaoFechar = document.getElementById("fechar");
     var textoAndar = document.getElementById("andar");
     var musica = document.getElementById("musica");
+
+    var primeiroTexto = document.getElementById("primeiroTexto");
+    var segundoTexto = document.getElementById("segundoTexto");
+    var circulo = document.getElementById("circulo");
+    var circuloDois = document.getElementById("circulo2");
+    var simbolo = document.getElementById("simbolo");
+    var linha = document.getElementById("linha");
 
     //imagens
     var imagemFechada = "animation/elevador/elevador_fechado.jpg";
@@ -139,15 +293,20 @@
     localStorage.setItem("andar", "T");
     localStorage.setItem("aberto", "true");
 
+    primeiroTexto.innerText = "TA";
+
     textoAndar.innerText = localStorage.getItem("andar");
     fundo.background = "animation/elevador/elevador_aberto.jpg";
     musica.volume = 0.3;
 
-    // Fecha ou abre a porta
+    // Fecha ou abre a porta. Troca a imagem de fundo, espera 500ms e troca novamente. atualiza os textos das bolinha com "Andar" e "Andar + A" e vice e versa. Toca um som ao abrir.
     botaoFechar.onclick = async function () {
       console.log(localStorage.getItem("aberto"));
       if (localStorage.getItem("aberto") == "true") {
         fundo.background = imagemFechando;
+        primeiroTexto.innerHTML = localStorage.getItem("andar") + "A";
+        segundoTexto.innerHTML = localStorage.getItem("andar");
+        textoAndar.innerText = localStorage.getItem("andar");
         localStorage.setItem("aberto", "false");
         await new Promise((r) => setTimeout(r, 500));
         fundo.background = imagemFechada;
@@ -155,34 +314,47 @@
         var audio = new Audio("audio/elevador/ding.wav");
         audio.play();
         fundo.background = imagemFechando;
+        primeiroTexto.innerHTML = localStorage.getItem("andar");
+        segundoTexto.innerHTML = localStorage.getItem("andar") + "A";
+
+        textoAndar.innerText = localStorage.getItem("andar");
         localStorage.setItem("aberto", "true");
         await new Promise((r) => setTimeout(r, 500));
         fundo.background = imagemAberta;
       }
     };
 
-    //Sobe o elevador
+    //Sobe o elevador. Altera a imagem. Salva o andar atual. E preenche as bolinhas com o andar anterior e o atual.
     botaoSubir.onclick = async function () {
+      andar = localStorage.getItem("andar");
       if (localStorage.getItem("aberto") == "true") {
-        //n faz nada
+        primeiroTexto.innerHTML = andar;
+        segundoTexto.innerHTML = andar;
       } else {
-        andar = localStorage.getItem("andar");
         fundo.background = imagemSubindo;
         switch (andar) {
           case "T":
             andar = "1";
+            primeiroTexto.innerHTML = "T";
+            segundoTexto.innerHTML = "1";
             break;
 
           case "1":
             andar = "2";
+            primeiroTexto.innerHTML = "1";
+            segundoTexto.innerHTML = "2";
             break;
 
           case "2":
             andar = "3";
+            primeiroTexto.innerHTML = "2";
+            segundoTexto.innerHTML = "3";
             break;
 
           case "3":
             andar = "3";
+            primeiroTexto.innerHTML = "3";
+            segundoTexto.innerHTML = "3";
             break;
 
           default:
@@ -193,30 +365,40 @@
       }
     };
 
-    //Fecha o elevador
+    //Fecha o elevador. Altera a imagem. Salva o andar atual. E preenche as bolinhas com o andar anterior e o atual.
     botaoDescer.onclick = async function () {
       console.log("estou na funcao");
+      andar = localStorage.getItem("andar");
+
       if (localStorage.getItem("aberto") == "true") {
-        //n faz nada
+        primeiroTexto.innerHTML = andar;
+        segundoTexto.innerHTML = andar;
       } else {
-        andar = localStorage.getItem("andar");
         fundo.background = imagemDescendo;
 
         switch (andar) {
           case "T":
             andar = "T";
+            primeiroTexto.innerHTML = "T";
+            segundoTexto.innerHTML = "T";
             break;
 
           case "1":
             andar = "T";
+            primeiroTexto.innerHTML = "1";
+            segundoTexto.innerHTML = "T";
             break;
 
           case "2":
             andar = "1";
+            primeiroTexto.innerHTML = "2";
+            segundoTexto.innerHTML = "1";
             break;
 
           case "3":
             andar = "2";
+            primeiroTexto.innerHTML = "3";
+            segundoTexto.innerHTML = "2";
             break;
 
           default:
