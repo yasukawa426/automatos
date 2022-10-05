@@ -293,8 +293,8 @@
     localStorage.setItem("andar", "T");
     localStorage.setItem("aberto", "true");
 
-    primeiroTexto.innerText = "T";
- 
+    primeiroTexto.innerText = "TA";
+
     textoAndar.innerText = localStorage.getItem("andar");
     fundo.background = "animation/elevador/elevador_aberto.jpg";
     musica.volume = 0.3;
@@ -304,6 +304,9 @@
       console.log(localStorage.getItem("aberto"));
       if (localStorage.getItem("aberto") == "true") {
         fundo.background = imagemFechando;
+        primeiroTexto.innerHTML = textoAndar.innerText =
+          localStorage.getItem("andar") + "A";
+        segundoTexto.innerHTML = localStorage.getItem("andar");
         localStorage.setItem("aberto", "false");
         await new Promise((r) => setTimeout(r, 500));
         fundo.background = imagemFechada;
@@ -311,6 +314,10 @@
         var audio = new Audio("audio/elevador/ding.wav");
         audio.play();
         fundo.background = imagemFechando;
+        primeiroTexto.innerHTML = textoAndar.innerText =
+          localStorage.getItem("andar");
+        segundoTexto.innerHTML = textoAndar.innerText =
+          localStorage.getItem("andar") + "A";
         localStorage.setItem("aberto", "true");
         await new Promise((r) => setTimeout(r, 500));
         fundo.background = imagemAberta;
@@ -330,26 +337,26 @@
         switch (andar) {
           case "T":
             andar = "1";
-            primeiroTexto.innerHTML= "T"
-            segundoTexto.innerHTML = "1"
+            primeiroTexto.innerHTML = "T";
+            segundoTexto.innerHTML = "1";
             break;
 
           case "1":
             andar = "2";
-            primeiroTexto.innerHTML= "1"
-            segundoTexto.innerHTML = "2"
+            primeiroTexto.innerHTML = "1";
+            segundoTexto.innerHTML = "2";
             break;
 
           case "2":
             andar = "3";
-            primeiroTexto.innerHTML= "2"
-            segundoTexto.innerHTML = "3"
+            primeiroTexto.innerHTML = "2";
+            segundoTexto.innerHTML = "3";
             break;
 
           case "3":
             andar = "3";
-            primeiroTexto.innerHTML= "3"
-            segundoTexto.innerHTML = "3"
+            primeiroTexto.innerHTML = "3";
+            segundoTexto.innerHTML = "3";
             break;
 
           default:
@@ -372,26 +379,26 @@
         switch (andar) {
           case "T":
             andar = "T";
-            primeiroTexto.innerHTML= "T"
-            segundoTexto.innerHTML = "T"
+            primeiroTexto.innerHTML = "T";
+            segundoTexto.innerHTML = "T";
             break;
 
           case "1":
             andar = "T";
-            primeiroTexto.innerHTML= "1"
-            segundoTexto.innerHTML = "T"
+            primeiroTexto.innerHTML = "1";
+            segundoTexto.innerHTML = "T";
             break;
 
           case "2":
             andar = "1";
-            primeiroTexto.innerHTML= "2"
-            segundoTexto.innerHTML = "1"
+            primeiroTexto.innerHTML = "2";
+            segundoTexto.innerHTML = "1";
             break;
 
           case "3":
             andar = "2";
-            primeiroTexto.innerHTML= "3"
-            segundoTexto.innerHTML = "2"
+            primeiroTexto.innerHTML = "3";
+            segundoTexto.innerHTML = "2";
             break;
 
           default:
