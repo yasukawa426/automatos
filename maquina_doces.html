@@ -54,23 +54,23 @@
       </nav>
 
       <!--botoes-->
-      <p id="andar"></p>
-    <button type="button" id="colocar1Real" class="medium material-icons">
+      <p id="dinheiroTotal"></p>
+    <button type="button" id="colocar1Real">
       1
     </button>
-    <button type="button" id="colocar2Reais" class="medium material-icons">
+    <button type="button" id="colocar2Reais">
       2
     </button>
-    <button type="button" id="colocar5Reais" class="medium material-icons">
+    <button type="button" id="colocar5Reais">
       5
     </button>
-    <button type="button" id="escolherDoceA" class="medium material-icons">
+    <button type="button" id="escolherDoceA">
       A
     </button>
-    <button type="button" id="escolherDoceB" class="medium material-icons">
+    <button type="button" id="escolherDoceB">
       B
     </button>
-    <button type="button" id="escolherDoceC" class="medium material-icons">
+    <button type="button" id="escolherDoceC">
       C
     </button>
     
@@ -90,6 +90,8 @@
     var botaoDoceA = document.getElementById("escolherDoceA");
     var botaoDoceB = document.getElementById("escolherDoceB");
     var botaoDoceC = document.getElementById("escolherDoceC");
+    var textoDinheiro = document.getElementById("dinheiroTotal");
+    var saldo = 0;
 
     //imagens
     var maquinaCheia = "animation/maquina_de_doce/maquina_cheia_inicio.png"
@@ -101,41 +103,45 @@
     localStorage.setItem("dinheiroTotal", 0);
     localStorage.setItem("troco", 0);
 
-    // textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
+    textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
     fundo.background = "animation/maquina_de_doce/maquina_cheia_inicio.png"
 
     //Colocar 1 real
-    botao2Reais.onclick = async function () {
+    botao1Real.onclick = async function () {
       fundo.background = maquinaAposDinheiro;
-      localStorage.setItem("dinheiroTotal", "dinheiroTotal" + 1);
-      saldoMaquina.innerText = localStorage.getItem("dinheiroTotal");
-      await new Promise((r) => setTimeout(r, 500));
+      saldo += 1;
+      localStorage.setItem("dinheiroTotal", saldo);
+      textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
+      //await new Promise((r) => setTimeout(r, 500));
       fundo.background = maquinaCheia;
     };
 
     //Colocar 2 reais
     botao2Reais.onclick = async function () {
       fundo.background = maquinaAposDinheiro;
-      localStorage.setItem("dinheiroTotal", "dinheiroTotal" + 2);
+      saldo += 2;
+      localStorage.setItem("dinheiroTotal", saldo);
       textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
-      await new Promise((r) => setTimeout(r, 500));
+      //await new Promise((r) => setTimeout(r, 500));
       fundo.background = maquinaCheia;
     };
 
     //Colocar 5 reais
     botao5Reais.onclick = async function () {
       fundo.background = maquinaAposDinheiro;
-      localStorage.setItem("dinheiroTotal", "dinheiroTotal" + 5);
+      saldo += 5;
+      localStorage.setItem("dinheiroTotal", saldo);
       textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
-      await new Promise((r) => setTimeout(r, 500));
+      //await new Promise((r) => setTimeout(r, 500));
       fundo.background = maquinaCheia;
     };
 
     //Doce A sem troco
     botaoDoceA.onclick = async function () {
-    if(localStorage.getItem("dinheiroTotal") >= 6){
+    if(localStorage.getItem("dinheiroTotal") == 6){
       fundo.background = maquinaAposDoceA
-      localStorage.setItem("dinheiroTotal", 0);
+      saldo = 0;
+      localStorage.setItem("dinheiroTotal", saldo);
       textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
       await new Promise((r) => setTimeout(r, 500));
       fundo.background = maquinaCheia;
@@ -146,7 +152,8 @@
     botaoDoceA.onclick = async function () {
     if(localStorage.getItem("dinheiroTotal") > 6){
       fundo.background = maquinaAposDoceA
-      localStorage.setItem("dinheiroTotal", "dinheiroTotal" - 6);
+      saldo -= 6;
+      localStorage.setItem("dinheiroTotal", saldo);
       textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
       await new Promise((r) => setTimeout(r, 500));
       fundo.background = maquinaCheia;
@@ -157,7 +164,8 @@
     botaoDoceB.onclick = async function () {
     if(localStorage.getItem("dinheiroTotal") == 7){
       fundo.background = maquinaAposDoceB
-      localStorage.setItem("dinheiroTotal", 0);
+      saldo = 0;
+      localStorage.setItem("dinheiroTotal", saldo);
       textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
       await new Promise((r) => setTimeout(r, 500));
       fundo.background = maquinaCheia;
@@ -168,7 +176,8 @@
     botaoDoceB.onclick = async function () {
     if(localStorage.getItem("dinheiroTotal") > 7){
       fundo.background = maquinaAposDoceB
-      localStorage.setItem("dinheiroTotal", "dinheiroTotal" - 7);
+      saldo -= 7;
+      localStorage.setItem("dinheiroTotal", saldo);
       textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
       await new Promise((r) => setTimeout(r, 500));
       fundo.background = maquinaCheia;
@@ -179,8 +188,9 @@
     botaoDoceC.onclick = async function () {
     if(localStorage.getItem("dinheiroTotal") == 8){
       fundo.background = maquinaAposDoceC
-      localStorage.setItem("dinheiroTotal", 0);
-      textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
+      saldo = 0;
+      localStorage.setItem("dinheiroTotal", saldo);
+      textoDinheiro.innerText = localStorage.getItem(dinheiroTotal);
       await new Promise((r) => setTimeout(r, 500));
       fundo.background = maquinaCheia;
     }
@@ -190,7 +200,8 @@
     botaoDoceC.onclick = async function () {
     if(localStorage.getItem("dinheiroTotal") > 8){
       fundo.background = maquinaAposDoceC
-      localStorage.setItem("dinheiroTotal", "dinheiroTotal" - 8);
+      saldo -= 8;
+      localStorage.setItem("dinheiroTotal", saldo);
       textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
       await new Promise((r) => setTimeout(r, 500));
       fundo.background = maquinaCheia;
