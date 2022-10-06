@@ -19,14 +19,16 @@
 
     #subir,
     #descer,
-    #fechar {
+    #fechar,
+    #botao_musica {
       position: absolute;
       left: 70%;
     }
 
     #subir,
     #descer,
-    #fechar {
+    #fechar,
+    #botao_musica {
       border-radius: 200%;
     }
 
@@ -40,6 +42,10 @@
 
     #fechar {
       top: 60%;
+    }
+
+    #botao_musica {
+      top: 10%;
     }
 
     #andar {
@@ -140,12 +146,6 @@
   </head>
   <!-- navbar -->
   <body id="fundo">
-    <audio
-      src="audio/elevador/elevator_music.wav"
-      autoplay
-      loop
-      id="musica"
-    ></audio>
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Autômatos:</a>
@@ -183,6 +183,10 @@
     </button>
     <button type="button" id="fechar" class="medium material-icons">
       compare_arrows
+    </button>
+
+    <button type="button" class="medium material-icons" id="botao_musica">
+      volume_up
     </button>
 
     <!--abrir modal -->
@@ -273,8 +277,8 @@
     var botaoSubir = document.getElementById("subir");
     var botaoDescer = document.getElementById("descer");
     var botaoFechar = document.getElementById("fechar");
+    var botaoMusica = document.getElementById("botao_musica");
     var textoAndar = document.getElementById("andar");
-    var musica = document.getElementById("musica");
 
     var primeiroTexto = document.getElementById("primeiroTexto");
     var segundoTexto = document.getElementById("segundoTexto");
@@ -290,6 +294,7 @@
     var imagemSubindo = "animation/elevador/elevador_subindo.jpg";
     var imagemDescendo = "animation/elevador/elevador_descendo.jpg";
 
+    localStorage.clear();
     localStorage.setItem("andar", "T");
     localStorage.setItem("aberto", "true");
 
@@ -297,11 +302,13 @@
 
     textoAndar.innerText = localStorage.getItem("andar");
     fundo.background = "animation/elevador/elevador_aberto.jpg";
-    musica.volume = 0.3;
+
+    var audio = new Audio("audio/elevador/elevator_music.wav");
+    audio.volume = 0.3;
 
     // Fecha ou abre a porta. Troca a imagem de fundo, espera 500ms e troca novamente. atualiza os textos das bolinha com "Andar" e "Andar + A" e vice e versa. Toca um som ao abrir.
     botaoFechar.onclick = async function () {
-      console.log(localStorage.getItem("aberto"));
+      simbolo.innerHTML = "f";
       if (localStorage.getItem("aberto") == "true") {
         fundo.background = imagemFechando;
         primeiroTexto.innerHTML = localStorage.getItem("andar") + "A";
@@ -326,6 +333,8 @@
 
     //Sobe o elevador. Altera a imagem. Salva o andar atual. E preenche as bolinhas com o andar anterior e o atual.
     botaoSubir.onclick = async function () {
+      simbolo.innerHTML = "s";
+
       andar = localStorage.getItem("andar");
       if (localStorage.getItem("aberto") == "true") {
         primeiroTexto.innerHTML = andar;
@@ -367,7 +376,7 @@
 
     //Fecha o elevador. Altera a imagem. Salva o andar atual. E preenche as bolinhas com o andar anterior e o atual.
     botaoDescer.onclick = async function () {
-      console.log("estou na funcao");
+      simbolo.innerHTML = "d";
       andar = localStorage.getItem("andar");
 
       if (localStorage.getItem("aberto") == "true") {
@@ -406,6 +415,29 @@
         }
         textoAndar.innerText = andar;
         localStorage.setItem("andar", andar);
+      }
+    };
+    botaoMusica.onclick = function () {
+      if (audio.paused) {
+        botaoMusica.innerHTML = "volume_off";
+        if (typeof audio.loop == "boolean") {
+          audio.loop = true;
+        } else {
+          audio.addEventListener(
+            "ended",
+            function () {
+              this.currentTime = 0;
+              this.play();
+            },
+            false
+          );
+        }
+        audio.play();
+      } else if (audio.paused == false) {
+        botaoMusica.innerHTML = "volume_up";
+        document.querySelectorAll("audio").forEach((el) => el.pause());
+        audio.pause();
+        audio.currentTime = 0;
       }
     };
   </script>
