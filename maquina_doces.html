@@ -4,76 +4,71 @@
     body,
     html {
       height: 100%;
+
     }
     body {
       /* Full height */
       height: 100%;
 
+
       /* Center and scale the image nicely */
       background-position: center;
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: cover;
       background-size: 50% 100vh;
       background-color: rgb(153, 154, 158);
     }
   </style>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Case 1 - Máquina de Doce</title>
-    <link 
-      href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
-      />
-    <link 
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
     />
-</head>
-<body id="fundo">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body id="fundo">
     <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Autômatos</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-              <div class="navbar-nav">
-                  <a href="maquina_doces.html" class="nav-link active">Case 1 (Máquina de Doces)</a>
-                  <a href="elevador.html" class="nav-link">Case 2 (Elevador)</a>
-              </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Autômatos</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <div class="navbar-nav">
+            <a href="maquina_doces.html" class="nav-link active"
+              >Case 1 (Máquina de Doces)</a
+            >
+            <a href="elevador.html" class="nav-link">Case 2 (Elevador)</a>
           </div>
         </div>
-      </nav>
+      </div>
+    </nav>
 
-      <!--botoes-->
-      <p id="dinheiroTotal"></p>
-    <button type="button" id="colocar1Real">
-      1
-    </button>
-    <button type="button" id="colocar2Reais">
-      2
-    </button>
-    <button type="button" id="colocar5Reais">
-      5
-    </button>
-    <button type="button" id="escolherDoceA">
-      A
-    </button>
-    <button type="button" id="escolherDoceB">
-      B
-    </button>
-    <button type="button" id="escolherDoceC">
-      C
-    </button>
-    
+    <!--botoes-->
+    <p id="dinheiroTotal"></p>
+    <button type="button" id="colocar1Real">1</button>
+    <button type="button" id="colocar2Reais">2</button>
+    <button type="button" id="colocar5Reais">5</button>
+    <button type="button" id="escolherDoceA">A</button>
+    <button type="button" id="escolherDoceB">B</button>
+    <button type="button" id="escolherDoceC">C</button>
   </body>
 
   <script
@@ -94,24 +89,26 @@
     var saldo = 0;
 
     //imagens
-    var maquinaCheia = "animation/maquina_de_doce/maquina_cheia_inicio.png"
-    var maquinaAposDinheiro = "animation/maquina_de_doce/maquinaAposDinheiro.png"
-    var maquinaAposDoceA = "animation/maquina_de_doce/maquinaAposDoceA.png"
-    var maquinaAposDoceB = "animation/maquina_de_doce/maquinaAposDoceB.png"
-    var maquinaAposDoceC = "animation/maquina_de_doce/maquinaAposDoceC.png"
+    var maquinaCheia = "animation/maquina_de_doce/maquina_cheia_inicio.png";
+    var maquinaAposDinheiro =
+      "animation/maquina_de_doce/maquinaAposDinheiro.png";
+    var maquinaAposDoceA = "animation/maquina_de_doce/maquinaAposDoceA.png";
+    var maquinaAposDoceB = "animation/maquina_de_doce/maquinaAposDoceB.png";
+    var maquinaAposDoceC = "animation/maquina_de_doce/maquinaAposDoceC.png";
 
     localStorage.setItem("dinheiroTotal", 0);
     localStorage.setItem("troco", 0);
 
-    textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
-    fundo.background = "animation/maquina_de_doce/maquina_cheia_inicio.png"
+    textoDinheiro.innerText = "Saldo: " + localStorage.getItem("dinheiroTotal");
+    fundo.background = "animation/maquina_de_doce/maquina_cheia_inicio.png";
 
     //Colocar 1 real
     botao1Real.onclick = async function () {
       fundo.background = maquinaAposDinheiro;
       saldo += 1;
       localStorage.setItem("dinheiroTotal", saldo);
-      textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
+      textoDinheiro.innerText =
+        "Saldo: " + localStorage.getItem("dinheiroTotal");
       //await new Promise((r) => setTimeout(r, 500));
       fundo.background = maquinaCheia;
     };
@@ -121,7 +118,8 @@
       fundo.background = maquinaAposDinheiro;
       saldo += 2;
       localStorage.setItem("dinheiroTotal", saldo);
-      textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
+      textoDinheiro.innerText =
+        "Saldo: " + localStorage.getItem("dinheiroTotal");
       //await new Promise((r) => setTimeout(r, 500));
       fundo.background = maquinaCheia;
     };
@@ -131,82 +129,79 @@
       fundo.background = maquinaAposDinheiro;
       saldo += 5;
       localStorage.setItem("dinheiroTotal", saldo);
-      textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
+      textoDinheiro.innerText =
+        "Saldo: " + localStorage.getItem("dinheiroTotal");
       //await new Promise((r) => setTimeout(r, 500));
       fundo.background = maquinaCheia;
     };
 
-    //Doce A sem troco
     botaoDoceA.onclick = async function () {
-    if(localStorage.getItem("dinheiroTotal") == 6){
-      fundo.background = maquinaAposDoceA
-      saldo = 0;
-      localStorage.setItem("dinheiroTotal", saldo);
-      textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
-      await new Promise((r) => setTimeout(r, 500));
-      fundo.background = maquinaCheia;
-    }
-  }
-
-    //Doce A com troco
-    botaoDoceA.onclick = async function () {
-    if(localStorage.getItem("dinheiroTotal") > 6){
-      fundo.background = maquinaAposDoceA
-      saldo -= 6;
-      localStorage.setItem("dinheiroTotal", saldo);
-      textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
-      await new Promise((r) => setTimeout(r, 500));
-      fundo.background = maquinaCheia;
-    }
-  }
+      //Doce A sem troco
+      if (parseInt(localStorage.getItem("dinheiroTotal")) == 6) {
+        fundo.background = maquinaAposDoceA;
+        saldo = 0;
+        localStorage.setItem("dinheiroTotal", saldo);
+        textoDinheiro.innerText =
+          "Saldo: " + localStorage.getItem("dinheiroTotal");
+        await new Promise((r) => setTimeout(r, 500));
+        fundo.background = maquinaCheia;
+      }
+      //Doce A com troco
+      else if (localStorage.getItem("dinheiroTotal") > 6) {
+        fundo.background = maquinaAposDoceA;
+        saldo -= 6;
+        localStorage.setItem("dinheiroTotal", saldo);
+        textoDinheiro.innerText =
+          "Saldo: " + localStorage.getItem("dinheiroTotal");
+        await new Promise((r) => setTimeout(r, 500));
+        fundo.background = maquinaCheia;
+      }
+    };
 
     //Doce B sem troco
     botaoDoceB.onclick = async function () {
-    if(localStorage.getItem("dinheiroTotal") == 7){
-      fundo.background = maquinaAposDoceB
-      saldo = 0;
-      localStorage.setItem("dinheiroTotal", saldo);
-      textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
-      await new Promise((r) => setTimeout(r, 500));
-      fundo.background = maquinaCheia;
-    }
-  }
-
-    //Doce B com troco
-    botaoDoceB.onclick = async function () {
-    if(localStorage.getItem("dinheiroTotal") > 7){
-      fundo.background = maquinaAposDoceB
-      saldo -= 7;
-      localStorage.setItem("dinheiroTotal", saldo);
-      textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
-      await new Promise((r) => setTimeout(r, 500));
-      fundo.background = maquinaCheia;
-    }
-  }
+      if (localStorage.getItem("dinheiroTotal") == 7) {
+        fundo.background = maquinaAposDoceB;
+        saldo = 0;
+        localStorage.setItem("dinheiroTotal", saldo);
+        textoDinheiro.innerText =
+          "Saldo: " + localStorage.getItem("dinheiroTotal");
+        await new Promise((r) => setTimeout(r, 500));
+        fundo.background = maquinaCheia;
+      }
+      //Doce B com troco
+      else if (localStorage.getItem("dinheiroTotal") > 7) {
+        fundo.background = maquinaAposDoceB;
+        saldo -= 7;
+        localStorage.setItem("dinheiroTotal", saldo);
+        textoDinheiro.innerText =
+          "Saldo: " + localStorage.getItem("dinheiroTotal");
+        await new Promise((r) => setTimeout(r, 500));
+        fundo.background = maquinaCheia;
+      }
+    };
 
     //Doce C sem troco
     botaoDoceC.onclick = async function () {
-    if(localStorage.getItem("dinheiroTotal") == 8){
-      fundo.background = maquinaAposDoceC
-      saldo = 0;
-      localStorage.setItem("dinheiroTotal", saldo);
-      textoDinheiro.innerText = localStorage.getItem(dinheiroTotal);
-      await new Promise((r) => setTimeout(r, 500));
-      fundo.background = maquinaCheia;
-    }
-  }
-
-    //Doce C com troco
-    botaoDoceC.onclick = async function () {
-    if(localStorage.getItem("dinheiroTotal") > 8){
-      fundo.background = maquinaAposDoceC
-      saldo -= 8;
-      localStorage.setItem("dinheiroTotal", saldo);
-      textoDinheiro.innerText = localStorage.getItem("dinheiroTotal");
-      await new Promise((r) => setTimeout(r, 500));
-      fundo.background = maquinaCheia;
-    }
-  }
-
+      if (localStorage.getItem("dinheiroTotal") == 8) {
+        fundo.background = maquinaAposDoceC;
+        saldo = 0;
+        localStorage.setItem("dinheiroTotal", saldo);
+        textoDinheiro.innerText =
+          "Saldo: " + localStorage.getItem(dinheiroTotal);
+        await new Promise((r) => setTimeout(r, 500));
+        fundo.background = maquinaCheia;
+      }
+      //Doce C com troco
+      else if (localStorage.getItem("dinheiroTotal") > 8) {
+        fundo.background = maquinaAposDoceC;
+        saldo -= 8;
+        localStorage.setItem("dinheiroTotal", saldo);
+        textoDinheiro.innerText =
+          "Saldo: " + localStorage.getItem("dinheiroTotal");
+        await new Promise((r) => setTimeout(r, 500));
+        fundo.background = maquinaCheia;
+      }
+    };
   </script>
 </html>
