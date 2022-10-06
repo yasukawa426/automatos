@@ -127,6 +127,14 @@
       top: 40%;
       left: 13%;
     }
+
+    #seta {
+      font-size: 160%;
+      position: absolute;
+      left: 10.4%;
+      top: 46.2%;
+      display: none;
+    }
   </style>
   <head>
     <meta charset="UTF-8" />
@@ -214,6 +222,8 @@
       <div class="circulo-txt" id="segundoTexto"></div>
     </div>
 
+    <span id="seta">\/</span>
+
     <!-- Modal -->
     <div
       class="modal fade"
@@ -286,6 +296,7 @@
     var circuloDois = document.getElementById("circulo2");
     var simbolo = document.getElementById("simbolo");
     var linha = document.getElementById("linha");
+    var seta = document.getElementById("seta");
 
     //imagens
     var imagemFechada = "animation/elevador/elevador_fechado.jpg";
@@ -308,6 +319,7 @@
 
     // Fecha ou abre a porta. Troca a imagem de fundo, espera 500ms e troca novamente. atualiza os textos das bolinha com "Andar" e "Andar + A" e vice e versa. Toca um som ao abrir.
     botaoFechar.onclick = async function () {
+      seta.style.display = "flex";
       simbolo.innerHTML = "f";
       if (localStorage.getItem("aberto") == "true") {
         fundo.background = imagemFechando;
@@ -334,6 +346,7 @@
     //Sobe o elevador. Altera a imagem. Salva o andar atual. E preenche as bolinhas com o andar anterior e o atual.
     botaoSubir.onclick = async function () {
       simbolo.innerHTML = "s";
+      seta.style.display = "flex";
 
       andar = localStorage.getItem("andar");
       if (localStorage.getItem("aberto") == "true") {
@@ -377,6 +390,7 @@
     //Fecha o elevador. Altera a imagem. Salva o andar atual. E preenche as bolinhas com o andar anterior e o atual.
     botaoDescer.onclick = async function () {
       simbolo.innerHTML = "d";
+      seta.style.display = "flex";
       andar = localStorage.getItem("andar");
 
       if (localStorage.getItem("aberto") == "true") {
