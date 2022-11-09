@@ -208,7 +208,7 @@
               palavra = "";
               continue;
             }
-            if(isNaN(palavra) == false){
+            if (isNaN(palavra) == false) {
               tokens[i] = "&ltnumero, " + palavra + "&gt";
               palavra = "";
               continue;
@@ -382,8 +382,12 @@
               case "||":
                 tokens[i] = "&ltoperadores logicos, " + palavra + "&gt";
                 break;
+
+              case "=":
+                tokens[i] = "&ltoperador de atribuição, " + palavra + "&gt";
+                break;
+
               case "!":
-              
 
               //caso for um identificador, adiciona ele na tabela de simbolos e cria um token com <identificador, posição na tabela de simbolos>
               default:
