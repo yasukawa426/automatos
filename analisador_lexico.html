@@ -200,6 +200,19 @@
             if (palavra == " " || palavra == "\n" || palavra == "") {
               continue;
             }
+            if (
+              (palavra.startsWith("'") && palavra.endsWith("'")) ||
+              (palavra.startsWith('"') && palavra.endsWith('"'))
+            ) {
+              tokens[i] = "&ltcadeia de caracteres, " + palavra + "&gt";
+              palavra = "";
+              continue;
+            }
+            if(isNaN(palavra) == false){
+              tokens[i] = "&ltnumero, " + palavra + "&gt";
+              palavra = "";
+              continue;
+            }
 
             //se não, salva em tokens com a parada apropriada.
             switch (palavra) {
@@ -349,7 +362,28 @@
                 break;
               case "goto":
                 tokens[i] = "&ltpalavra reservada, " + palavra + "&gt";
-                break;              
+                break;
+              case "!=":
+              case "==":
+              case ">":
+              case ">=":
+              case "<":
+              case "<=":
+                tokens[i] = "&ltoperadores relacionais, " + palavra + "&gt";
+                break;
+              case "+":
+              case "-":
+              case "*":
+              case "/":
+              case "%":
+                tokens[i] = "&ltoperadores aritmeticos, " + palavra + "&gt";
+                break;
+              case "&&":
+              case "||":
+                tokens[i] = "&ltoperadores logicos, " + palavra + "&gt";
+                break;
+              case "!":
+              
 
               //caso for um identificador, adiciona ele na tabela de simbolos e cria um token com <identificador, posição na tabela de simbolos>
               default:
