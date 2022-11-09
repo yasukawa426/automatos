@@ -76,12 +76,44 @@
     </pre>
     <button id="highlight">Fazer highlight do código.</button>
     <button id="analise">Fazer análise léxica.</button>
+
+    <p><b>Tokens</b></p>
+    <table id="tabela_token"></table>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
     <script>
       var editor = document.getElementById("editor");
       var text = editor.innerHTML;
 
       hljs.highlightAll();
+    </script>
+
+    <script>
+      //monta a tabela com os simbolos e mostra no html
+      function montarTabelaSimbolos(tokens) {
+        let table = "<table>";
+
+        table = table + "<tr>";
+        table = table + "<th>Indice</th>";
+        table = table + "<th>Token</th>";
+        table = table + "</tr>";
+
+        for (let chave in tokens) {
+          console.log("chave:", chave);
+          console.log("Token:", tokens[chave]);
+          table =
+            table +
+            "<tr><td>" +
+            chave +
+            "</td> <td>" +
+            tokens[chave] +
+            "</td></tr>";
+        }
+
+        table = table + "</table>";
+
+        document.getElementById("tabela_token").innerHTML = table;
+      }
     </script>
     <script>
       var highlight = document.getElementById("highlight");
@@ -104,6 +136,9 @@
         //dicionario que vai ser preenchido com os simbolos
         var tabelaSimbolos = {};
 
+        //ultimo indice preenchido na tabela de simbolos
+        var indicieSimbolo = 1;
+
         //Palavra temporaria que vai ser preenchida por cada caractere.
         var palavra = "";
 
@@ -125,11 +160,14 @@
               case "else":
               case "private":
               case "public":
-                tokens[i] = "<palavra reservada, " + palavra + ">";
+                tokens[i] = "&ltpalavra reservada, " + palavra + "&gt";
                 break;
 
+              //caso for um identificador, adiciona ele na tabela de simbolos e cria um token com <identificador, posição na tabela de simbolos>
               default:
-                tokens[i] = "<identificador, " + palavra + ">";
+                tabelaSimbolos[indicieSimbolo] = palavra;
+                tokens[i] = "&ltidentificador, " + indicieSimbolo + "&gt";
+                indicieSimbolo++;
                 break;
             }
 
@@ -143,7 +181,13 @@
           }
         }
 
-        console.log(tokens);
+        tokens = JSON.stringify(tokens);
+        tokens = JSON.parse(tokens);
+
+        montarTabelaSimbolos(tokens);
+
+        console.log("tokens:", tokens);
+        console.log("simbolos:", tabelaSimbolos);
       };
     </script>
   </body>
