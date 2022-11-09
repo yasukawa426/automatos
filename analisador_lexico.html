@@ -86,7 +86,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
     <script>
       var editor = document.getElementById("editor");
-      var text = editor.innerText;
+      var text = editor.innerHTML;
 
       //faz o higlight
       hljs.highlightAll();
@@ -136,7 +136,7 @@
             "<tr><td>" +
             chave +
             "</td> <td>" +
-                simbolos[chave] +
+            simbolos[chave] +
             "</td></tr>";
         }
 
@@ -152,7 +152,7 @@
       var texto = text;
 
       highlight.onclick = function () {
-        text = editor.innerText;
+        text = editor.innerHTML;
         //faz o higlight
         hljs.highlightAll();
       };
