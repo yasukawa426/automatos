@@ -80,22 +80,70 @@
     <script>
       var editor = document.getElementById("editor");
       var text = editor.innerHTML;
+
       hljs.highlightAll();
     </script>
     <script>
       var highlight = document.getElementById("highlight");
       var analise = document.getElementById("analise");
       var editor = document.getElementById("editor");
+      var texto = text;
 
       highlight.onclick = function () {
         text = editor.innerHTML;
         hljs.highlightAll();
       };
 
+      //Faz a análise léxica do código.
       analise.onclick = function () {
         // analisar dale
 
-        console.log(text);
+        //dicionario que vai ser preenchido com os tokens
+        var tokens = {};
+
+        //dicionario que vai ser preenchido com os simbolos
+        var tabelaSimbolos = {};
+
+        //Palavra temporaria que vai ser preenchida por cada caractere.
+        var palavra = "";
+
+        //para cada caractere
+        for (var i = 0; i < texto.length; i++) {
+          //pega o caractere
+          caractere = text[i];
+
+          //se o caractere for em branco (chegou ao fim da palavra)
+          if (caractere == " " || caractere == "\n") {
+            //caso a palavra estiver em branco (espaços seguidos), descarta
+            if (palavra == " " || palavra == "\n" || palavra == "") {
+              continue;
+            }
+
+            //se não, salva em tokens com a parada apropriada.
+            switch (palavra) {
+              case "if":
+              case "else":
+              case "private":
+              case "public":
+                tokens[i] = "<palavra reservada, " + palavra + ">";
+                break;
+
+              default:
+                tokens[i] = "<identificador, " + palavra + ">";
+                break;
+            }
+
+            //limpa a palavra
+            palavra = "";
+          }
+
+          //caso o caractere não for em branco, adiciona ele em palavra.
+          else {
+            palavra = palavra + caractere;
+          }
+        }
+
+        console.log(tokens);
       };
     </script>
   </body>
