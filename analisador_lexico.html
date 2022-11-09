@@ -4,7 +4,17 @@
     p {
       text-align: center;
     }
+
+    #editor-div {
+      background-color: #121212;
+    }
+
+    pre,
+    code {
+      color: white;
+    }
   </style>
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -51,7 +61,8 @@
       </div>
     </nav>
 
-    <pre><code id="editor" class="language-java" contenteditable="true" onchange="hljs.highlightAll();">
+    <div id="editor-div">
+      <pre><code id="editor" class="language-java" contenteditable="true">
         public class pattern  
 {    
      public static void main(String[] args){    
@@ -79,10 +90,8 @@
 }    
     </code>
     </pre>
-    <button id="highlight">Fazer highlight do código.</button>
+    </div>
     <button id="analise">Fazer análise léxica.</button>
-
-    <div></div>
 
     <div class="row">
       <div class="col-md-6">
@@ -105,14 +114,6 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
-    <script>
-      var editor = document.getElementById("editor");
-      var text = editor.innerHTML;
-
-      //faz o higlight
-      hljs.highlightAll();
-    </script>
-
     <script>
       //monta a tabela com os simbolos e mostra no html
       function montarTabelaTokens(tokens) {
@@ -167,20 +168,14 @@
       }
     </script>
     <script>
-      var highlight = document.getElementById("highlight");
       var analise = document.getElementById("analise");
       var editor = document.getElementById("editor");
-      var texto = text;
-
-      highlight.onclick = function () {
-        text = editor.innerHTML;
-        //faz o higlight
-        hljs.highlightAll();
-      };
 
       //Faz a análise léxica do código.
       analise.onclick = function () {
         // analisar dale
+
+        var texto = editor.innerHTML;
 
         //dicionario que vai ser preenchido com os tokens
         var tokens = {};
@@ -197,7 +192,7 @@
         //para cada caractere
         for (var i = 0; i < texto.length; i++) {
           //pega o caractere
-          caractere = text[i];
+          var caractere = texto[i];
 
           //se o caractere for em branco (chegou ao fim da palavra)
           if (caractere == " " || caractere == "\n") {
