@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Analisador Léxico</title>
+    <link rel="stylesheet" href="css/dracula.css" />
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -44,5 +45,52 @@
         </div>
       </div>
     </nav>
+
+    <pre><code class="language-java" contenteditable="true">
+        public class pattern  
+{    
+     public static void main(String[] args){    
+    int lines=4;    
+    int i,j;    
+    for(i=1;i<=lines;i++){// this loop is used to print lines    
+      for(j=1;j<=lines;j++){// this loop is used to print * in a line    
+          if(i==j)    
+             System.out.print("*");    
+            else    
+           System.out.print("0");    
+      }    
+      j--;    
+       System.out.print("*");    
+      while(j>=1){// this loop is used to print * in a line    
+          if(i==j)    
+           System.out.print("*");    
+          else    
+           System.out.print("0");    
+          j--;    
+      }    
+    System.out.println("");    
+  }    
+         }    
+}    
+    </code>
+    </pre>
+    <button id="highlight">Fazer highlight do código.</button>
+    <button id="analise">Fazer análise léxica.</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+    <script>
+      var highlight = document.getElementById("highlight");
+      var analise = document.getElementById("analise");
+
+      highlight.onclick = function () {
+        hljs.highlightAll();
+      };
+
+      analise.onclick = function () {
+        // analisar dale
+      };
+    </script>
   </body>
 </html>
