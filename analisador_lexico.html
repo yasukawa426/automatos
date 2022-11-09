@@ -80,17 +80,21 @@
     <p><b>Tokens</b></p>
     <table id="tabela_token"></table>
 
+    <p><b>Tabela de Simbolos</b></p>
+    <table id="tabela_simbolos"></table>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
     <script>
       var editor = document.getElementById("editor");
-      var text = editor.innerHTML;
+      var text = editor.innerText;
 
+      //faz o higlight
       hljs.highlightAll();
     </script>
 
     <script>
       //monta a tabela com os simbolos e mostra no html
-      function montarTabelaSimbolos(tokens) {
+      function montarTabelaTokens(tokens) {
         let table = "<table>";
 
         table = table + "<tr>";
@@ -114,6 +118,32 @@
 
         document.getElementById("tabela_token").innerHTML = table;
       }
+
+      //monta a tabela com os simbolos e mostra no html
+      function montarTabelaSimbolos(simbolos) {
+        let table = "<table>";
+
+        table = table + "<tr>";
+        table = table + "<th>Indice</th>";
+        table = table + "<th>Símbolo</th>";
+        table = table + "</tr>";
+
+        for (let chave in simbolos) {
+          console.log("chave:", chave);
+          console.log("Token:", simbolos[chave]);
+          table =
+            table +
+            "<tr><td>" +
+            chave +
+            "</td> <td>" +
+                simbolos[chave] +
+            "</td></tr>";
+        }
+
+        table = table + "</table>";
+
+        document.getElementById("tabela_simbolos").innerHTML = table;
+      }
     </script>
     <script>
       var highlight = document.getElementById("highlight");
@@ -122,7 +152,8 @@
       var texto = text;
 
       highlight.onclick = function () {
-        text = editor.innerHTML;
+        text = editor.innerText;
+        //faz o higlight
         hljs.highlightAll();
       };
 
@@ -184,7 +215,8 @@
         tokens = JSON.stringify(tokens);
         tokens = JSON.parse(tokens);
 
-        montarTabelaSimbolos(tokens);
+        montarTabelaTokens(tokens);
+        montarTabelaSimbolos(tabelaSimbolos);
 
         console.log("tokens:", tokens);
         console.log("simbolos:", tabelaSimbolos);
