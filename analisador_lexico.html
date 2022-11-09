@@ -78,10 +78,10 @@
     <button id="analise">Fazer análise léxica.</button>
 
     <p><b>Tokens</b></p>
-    <table id="tabela_token"></table>
+    <table id="tabela_token" class="table"></table>
 
     <p><b>Tabela de Simbolos</b></p>
-    <table id="tabela_simbolos"></table>
+    <table id="tabela_simbolos" class="table"></table>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
     <script>
@@ -97,7 +97,7 @@
       function montarTabelaTokens(tokens) {
         let table = "<table>";
 
-        table = table + "<tr>";
+        table = table + "<tr class='table-dark'>";
         table = table + "<th>Indice</th>";
         table = table + "<th>Token</th>";
         table = table + "</tr>";
@@ -123,7 +123,7 @@
       function montarTabelaSimbolos(simbolos) {
         let table = "<table>";
 
-        table = table + "<tr>";
+        table = table + "<tr class='table-dark'>";
         table = table + "<th>Indice</th>";
         table = table + "<th>Símbolo</th>";
         table = table + "</tr>";
