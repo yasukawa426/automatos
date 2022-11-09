@@ -177,6 +177,7 @@
 
         var texto = editor.innerHTML;
 
+
         //dicionario que vai ser preenchido com os tokens
         var tokens = {};
 
@@ -188,6 +189,9 @@
 
         //Palavra temporaria que vai ser preenchida por cada caractere.
         var palavra = "";
+
+        //Palavra temporaria que contem comentario, vai ser usada para descarta-lo
+        var comentario = "";
 
         //para cada caractere
         for (var i = 0; i < texto.length; i++) {
@@ -400,6 +404,20 @@
             //limpa a palavra
             palavra = "";
           }
+          //Se começa com uma barra e o proximo caractere é um asterisco,
+          // salve em comentario até encontrar um asterisco barra, então joga td fora
+          else if (
+            (caractere == "/" && texto[i + 1] == "*") ||
+            comentario != ""
+          ) {
+            console.log("caractere:", caractere);
+            console.log("comentario:", comentario);
+            comentario = comentario + caractere;
+
+            if (comentario.endsWith("*/")) {
+              comentario = "";
+            }
+          }
 
           //caso o caractere não for em branco, adiciona ele em palavra.
           else {
@@ -412,9 +430,6 @@
 
         montarTabelaTokens(tokens);
         montarTabelaSimbolos(tabelaSimbolos);
-
-        console.log("tokens:", tokens);
-        console.log("simbolos:", tabelaSimbolos);
       };
     </script>
   </body>
