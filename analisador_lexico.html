@@ -46,7 +46,7 @@
       </div>
     </nav>
 
-    <pre><code class="language-java" contenteditable="true">
+    <pre><code id="editor" class="language-java" contenteditable="true" onchange="hljs.highlightAll();">
         public class pattern  
 {    
      public static void main(String[] args){    
@@ -78,18 +78,24 @@
     <button id="analise">Fazer análise léxica.</button>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
     <script>
+      var editor = document.getElementById("editor");
+      var text = editor.innerHTML;
       hljs.highlightAll();
     </script>
     <script>
       var highlight = document.getElementById("highlight");
       var analise = document.getElementById("analise");
+      var editor = document.getElementById("editor");
 
       highlight.onclick = function () {
+        text = editor.innerHTML;
         hljs.highlightAll();
       };
 
       analise.onclick = function () {
         // analisar dale
+
+        console.log(text);
       };
     </script>
   </body>
