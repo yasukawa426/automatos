@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+  <style>
+    p {
+      text-align: center;
+    }
+  </style>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -77,11 +82,27 @@
     <button id="highlight">Fazer highlight do código.</button>
     <button id="analise">Fazer análise léxica.</button>
 
-    <p><b>Tokens</b></p>
-    <table id="tabela_token" class="table"></table>
+    <div></div>
 
-    <p><b>Tabela de Simbolos</b></p>
-    <table id="tabela_simbolos" class="table"></table>
+    <div class="row">
+      <div class="col-md-6">
+        <p><b>Tokens</b></p>
+        <table
+          id="tabela_token"
+          class="table mx-auto w-auto"
+          style="width: 50%"
+        ></table>
+      </div>
+
+      <div class="col-md-6">
+        <p><b>Tabela de Simbolos</b></p>
+        <table
+          id="tabela_simbolos"
+          class="table mx-auto w-auto"
+          style="width: 50%"
+        ></table>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
     <script>
