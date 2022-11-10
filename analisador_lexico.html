@@ -218,6 +218,14 @@
               palavra = "";
               continue;
             }
+            if(palavra.endsWith(",")){
+              var virgula = palavra.slice(-1);
+              palavra.deleteCharAt (str.length() - 1);
+
+              tokens[i] = "&ltidentificador, " + palavra + "&gt";
+              tokens[i] = "&ltdelimitador, " + indicieSimbolo + "&gt";
+
+            }
 
             //se não, salva em tokens com a parada apropriada.
             switch (palavra) {
@@ -297,8 +305,6 @@
               case "=":
                 tokens[i] = "&ltoperador de atribuição, " + palavra + "&gt";
                 break;
-
-              case "!":
 
               //caso for um identificador, adiciona ele na tabela de simbolos e cria um token com <identificador, posição na tabela de simbolos>
               default:
